@@ -15,17 +15,19 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    post_details: {
+    title: {
       type: DataTypes.STRING,
     },
-    date_created: {
+    comment: {
+      type: DataTypes.STRING,
+    },
+    content: {
+      type: DataTypes.STRING,
+    },
+    post_date: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
-    },
-    needed_funding: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
     },
     user_id: {
       type: DataTypes.INTEGER,
