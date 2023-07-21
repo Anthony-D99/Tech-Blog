@@ -17,16 +17,17 @@ Post.init(
     },
     title: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     comment: {
       type: DataTypes.STRING,
     },
     content: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     post_date: {
       type: DataTypes.DATE,
-      allowNull: false,
       defaultValue: DataTypes.NOW,
     },
     user_id: {

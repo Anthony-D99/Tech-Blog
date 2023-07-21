@@ -1,7 +1,25 @@
 const router = require('express').Router();
 const { Post } = require('../../models');
+const withAuth = require('../../utils/auth');
 
-router.post('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      where: {user_id: req.session.user_id}
+    });
+
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    res.render('homepage', {
+      posts,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.post('/', withAuth, async (req, res) => {
   try {
     const newPost = await Post.create({
       ...req.body,

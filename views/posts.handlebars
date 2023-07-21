@@ -2,9 +2,5 @@
   <h3 class="gallery-name">{{post.name}}</h3>
   <h4>Date Posted: {{format_time post.post_date}}</h4>
   <h5>{{post.content}}</h5>
-  <section class="flex-row justify-center">
-    {{#each user.posts as |post|}}
-    {{> post-details}}
-    {{/each}}
-  </section>
+  <h6>{{post.comment}}</h6>
 </section>
