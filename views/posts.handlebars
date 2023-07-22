@@ -1,6 +1,20 @@
-<section class="container">
-  <h3 class="gallery-name">{{post.name}}</h3>
-  <h4>Date Posted: {{format_time post.post_date}}</h4>
-  <h5>{{post.content}}</h5>
-  <h6>{{post.comment}}</h6>
+{{#each posts as |post|}}
+<section class="card">
+  <div href="/post/{{id}}">
+    <header>{{username}} {{title}}</header>
+<h2>{{post_date}}</h2>  
+<h3>{{content}}</h3>
+<h5>{{comment}}</h5>
+</div>
 </section>
+{{/each}}
+
+<button class="btn new-post" value="New Post">+</button>
+
+<form method="POST" class="hide post-create">
+
+
+
+
+<button class="btn" type="submit" value="Create Post">Create Post</button>
+</form>
