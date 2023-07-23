@@ -3,16 +3,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.post-create').addEventListener('submit', async (event) => {
       event.preventDefault();
   
-      const username = req.params.session.username
-      const title = document.querySelector('.race-create').value.trim();
-      const content = document.querySelector('.class-create').value.trim();
+      // const username = document.querySelector('.username-create');
+      const title = document.querySelector('.title-create').value.trim();
+      const content = document.querySelector('.content-create').value.trim();
       
   
-      if (username && title && content) {
+      if ( title && content) {
         try {
           const response = await fetch('/api/posts', {
             method: 'POST',
-            body: JSON.stringify({ username, title, content}),
+            body: JSON.stringify({title, content}),
             headers: { 'Content-Type': 'application/json' },
           });
   
@@ -32,4 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   
-  
+  document.querySelector(".new-post").addEventListener('click', async (event) => {
+    event.preventDefault(); 
+    const createPost = document.querySelector(".post-create")
+    const newPost = document.querySelector(".new-post")
+    createPost.classList.remove("hide")
+    newPost.classList.add("hide")
+  })
