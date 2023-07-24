@@ -22,31 +22,31 @@ router.get('/', async (req, res) => {
 });
 
 
-// router.get('/post/:id', withAuth, async (req, res) => {
-//   try {
-//     const postData = await Post.findByPk(req.params.id, {
-//       include: [
-//         {
-//           model: Post,
-//           attributes: [
-//             'title',
-//             'content',
-//             'name',
-//             'post_date',
-//             'comment',
+router.get('/post/:id', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: Post,
+          attributes: [
+            'title',
+            'content',
+            'name',
+            'post_date',
+            'comment',
             
-//           ],
-//         },
-//       ],
-//     });
+          ],
+        },
+      ],
+    });
 
-//     const post = postData.get({ plain: true });
-//     res.render('posts', { post, loggedIn: req.session.loggedIn });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+    const post = postData.get({ plain: true });
+    res.render('posts', { post, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 router.get('/posts', withAuth, async (req, res) => {
   try {
