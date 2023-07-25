@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.post-create').addEventListener('submit', async (event) => {
       event.preventDefault();
   
-      // const username = document.querySelector('.username-create');
       const title = document.querySelector('.title-create').value.trim();
       const content = document.querySelector('.content-create').value.trim();
       
