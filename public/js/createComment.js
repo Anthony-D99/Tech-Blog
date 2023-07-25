@@ -1,19 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    document.querySelector('.comment-create').addEventListener('submit', async (event) => {
+    document.querySelector('.comment-create').addEventListener('click', async (event) => {
       event.preventDefault();
-  
-      const content = document.querySelector('.comment-content').value.trim();
+      const postId = event.target.getAttribute('value')
+      const comment = document.querySelector('.comment-content').value.trim();
       
   
-      if (content) {
+      if (postId) {
         try {
-          const response = await fetch('/api/posts', {
-            method: 'POST',
-            body: JSON.stringify({content}),
+          const response = await fetch(`/api/posts/${postId}`, {
+            method: 'PUT',
+            body: JSON.stringify({comment}), 
             headers: { 'Content-Type': 'application/json' },
           });
-  
+          console.log(response)
           if (response.ok) {
             const newComment = await response.json();
             console.log(newComment);

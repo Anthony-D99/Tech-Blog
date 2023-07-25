@@ -65,6 +65,24 @@ router.get('/posts', withAuth, async (req, res) => {
   }
 });
 
+router.put('/posts/:id', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      update: comment,
+    });
+
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    res.render('posts', {
+      posts,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
